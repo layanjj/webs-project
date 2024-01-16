@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+    integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cozy Weaves</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
+  <meta charset="UTF-8">
+  <title>Clothing Design Form</title>
+  <style>
+    .error-message {
+      color: red;
+      display: none;
+    }
+  </style>
+  
+  <script>
+    function validateForm() {
+      var name = document.getElementById('name').value;
+      if (name.trim() === '') {
+        alert('Please enter your name.');
+        return false;
+      }
+
+      var size = document.querySelector('input[name="size"]:checked');
+      if (!size) {
+        alert('Please select a size.');
+        return false;
+      }
+
+      if (!checked) {
+        alert('Please select at least one checkbox.');
+        return false;
+      }
+
+      return true;
+    }
+  </script>
+</head>
+
+<body>
+  <nav class="navbar navbar-expand">
+    <img src="./images/logo3.png" height="70" width="">
+
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a href="index.html" class="nav-link">Home </a>
+      </li>
+      <li class="nav-item">
+        <a href="clothes.html" class="nav-link"> Clothes</a>
+      </li>
+      <li class="nav-item">
+        <a href="keychains.html" class="nav-link">keychains </a>
+      </li>
+      <li class="nav-item">
+        <a href="bookmarks.html" class="nav-link">bookmarks </a>
+      </li>
+      <li class="nav-item">
+        <a href="sale.html" class="nav-link">Sale </a>
+      </li>
+      <li class="nav-item">
+        <a href="bootstrap.html" class="nav-link">Your Design </a>
+      </li>
+    </ul>
+  </nav>
+  <h1>Date and Time: <span id="dateTime"></span></h1>
+
+  <form id="clothingForm" onsubmit="return validateForm()">
+    <fieldset>
+      <legend> Design Form</legend>
+      <label for="name">Name:</label>
+      <input type="text" id="name" name="name">
+      <span id="nameError" class="error-message"></span><br><br>
+
+      <label>type of project:</label><br>
+      <input type="radio" id="keychain" name="projectType" value="Keychain">
+      <label for="shirt">Keychain</label><br>
+      <input type="radio" id="Bookmark" name="projectType" value="Bookmark">
+      <label for="pants">bookmarks</label><br>
+      <input type="radio" id="clothes" name="projectType" value="Clothes">
+      <label for="dress">clothes</label>
+      <span id="projectTypeError" class="error-message"></span><br><br>
+
+      <label>Size:</label><br>
+      <input type="radio" id="small" name="size" value="Small">
+      <label for="small">Small</label><br>
+      <input type="radio" id="medium" name="size" value="Medium">
+      <label for="medium">Medium</label><br>
+      <input type="radio" id="large" name="size" value="Large">
+      <label for="large">Large</label>
+      <span id="sizeError" class="error-message"></span><br><br>
+
+      <label for="color">Preferred Color:</label>
+      <input type="text" id="color" name="color">
+      <span id="colorError" class="error-message"></span><br><br>
+
+      <label for="comments">Comments:</label><br>
+      <textarea id="comments" name="comments" rows="4" cols="30"></textarea><br><br>
+
+      <input type="submit" value="Submit">
+    </fieldset>
+  </form>
+  <script>
+    function validateForm() {
+      var name = document.getElementById('name').value.trim();
+      var projectType = document.querySelector('input[name="projectType"]:checked');
+      var size = document.querySelector('input[name="size"]:checked');
+      var color = document.getElementById('color').value.trim();
+
+      var nameError = document.getElementById('nameError');
+      var projectTypeError = document.getElementById('projectTypeError');
+      var sizeError = document.getElementById('sizeError');
+      var colorError = document.getElementById('colorError');
+      var hasError = false;
+      nameError.style.display = 'none';
+      projectTypeError.style.display = 'none';
+      sizeError.style.display = 'none';
+      colorError.style.display = 'none';
+
+      if (name === '') {
+        nameError.textContent = 'Please enter your name';
+        nameError.style.display = 'block';
+        hasError = true;
+      }
+
+      if (!projectType) {
+        projectTypeError.textContent = 'Please select a project type';
+        projectTypeError.style.display = 'block';
+        hasError = true;
+      }
+
+      if (!size) {
+        sizeError.textContent = 'Please select a size';
+        sizeError.style.display = 'block';
+        hasError = true;
+      }
+
+      if (color === '') {
+        colorError.textContent = 'Please enter a preferred color';
+        colorError.style.display = 'block';
+        hasError = true;
+      }
+
+      return !hasError;
+    }
+
+    function updateTime() {
+      var today = new Date();
+      var date = today.toLocaleDateString();
+      var time = today.toLocaleTimeString();
+      document.getElementById('dateTime').innerText = date + ' ' + time;
+    }
+    updateTime();
+    setInterval(updateTime, 1000);
+  </script>
+
+  <footer>
+    <div class="footerContainer">
+      <div class="socialIcons">
+        <a href="#"><i class="fa-brands fa-facebook"></i></a>
+        <a href="https://www.instagram.com/cozyweavesjo/"><i class="fa-brands fa-instagram"></i></a>
+        <a href="#"><i class="fa-brands fa-youtube"></i></a>
+        <a href="#"><i class="fa-brands fa-twitter"></i></a>
+      </div>
+      <div class="footerNav">
+        <ul>
+          <li><a href="./review.html">Review Us</a></li>
+          <li><a href="service.html">Our Services</a></li>
+          <li><a href="contact.html">Contact Us</a></li>
+          <li><a href="#">Terms & Conditions</a></li>
+          <li><a href="#">Career</a></li>
+        </ul>
+      </div>
+  </footer>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+    crossorigin="anonymous"></script>
+
+</body>
+
+</html>
